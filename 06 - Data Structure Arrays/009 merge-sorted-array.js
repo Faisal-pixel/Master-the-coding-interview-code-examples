@@ -28,8 +28,8 @@ function mergeSortedArray2 (array1, array2) {
     //We can check which array length is longer, if one is then we can use that to loop. This ensures we are covering all
     // What it is the same length, ehn, at least one works.
     const final = []
-    let array1FirstItem = array1[0];
-    let array2FirstItem = array2[0];
+    let array1Item = array1[0];
+    let array2Item = array2[0];
     let i = 1;
     let j = 1;
     const totalLength = array1.length + array2.length;
@@ -40,7 +40,19 @@ function mergeSortedArray2 (array1, array2) {
     // We will create a different one the second array because, sometimes one array can be larger than the other
     // and by the time we are done with the shorter array, it will give us undefined while the longer array
     // is still looping
-    
+    for(let index = 0; index < totalLength; index++) {
+        if(!array2Item || array1Item < array2Item) {
+            final.push(array1Item);
+            array1Item = array1[i];
+            i++
+        } else {
+            final.push(array2Item);
+            array2Item = array2[j];
+            j++
+        }
+    }
+
+    return final;
 }
 
 const printOut = mergeSortedArray2([0,3,4,31], [4, 6, 30]);
