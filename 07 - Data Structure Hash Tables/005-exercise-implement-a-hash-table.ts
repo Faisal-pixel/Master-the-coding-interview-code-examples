@@ -40,25 +40,52 @@ class HashTable implements IHashTable {
     // Then either there is a bucket or not, just push in the member even the storage is full. So this helps when it comes to collision.
     // If the array is full, if there is a new member, we can just push into the bucket, so the bucket will have more than one.
     this.data[index].push(keyValueArray);
-    console.log("set", this.data);
   }
 
   get(key: string) {
     let address = this._hash(key);
     let i = 0;
     if (this.data[address]) {
-        
       while (i < this.data[address].length) {
-        const value = this.data[address][i][0] === key && this.data[address][i][1];
+        const value =
+          this.data[address][i][0] === key && this.data[address][i][1];
         i++;
         return value;
       }
       return undefined;
     }
   }
+
+  keys() {
+    //So basically we want to get all the keys, but firstly, lets see our data
+    // First of we need to loop through the data, and if the slot isnt empty, we want to pick it
+    if(!this.data.length) {
+        return undefined
+    }
+    const keyArray: string[] = [];
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i] && this.data[i].length) {
+        if (this.data[i].length > 1) {
+          for (let j = 0; j < this.data[i].length; j++) {
+            keyArray.push(this.data[i][j][0]);
+          }
+        } else {
+          keyArray.push(this.data[i][0][0]);
+        }
+      }
+    }
+    return keyArray;
+  }
 }
 
 const myHashTable = new HashTable(50);
 myHashTable.set("grapess", 10000);
 myHashTable.set("grapes", 400);
-console.log(myHashTable.get("grapes"));
+myHashTable.set("lemons", 30);
+myHashTable.set("strawberry", 60);
+myHashTable.set("pinapple", 700);
+myHashTable.set("milk", 2000);
+myHashTable.set("nuts", 10);
+myHashTable.set("grapes", 9500);
+
+console.log(myHashTable.keys())
