@@ -43,5 +43,5 @@ function mergeSortedArray2 (array1, array2) {
     
 }
 
-const printOut = mergeSortedArray2([0,3,4,31], [4, 6, 30]);
+const printOut = mergeSortedArray2([0,3,4,31], [4, 6, 30]); v
 console.log(printOut)
