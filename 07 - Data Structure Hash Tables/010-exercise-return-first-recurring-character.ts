@@ -24,17 +24,24 @@ const returnFirstRecurringCharacter2 = (incomingArray: number[]) => {
     // If they do, we basically just return the number and break out
     for(let i = 0; i < incomingArray.length; i++) {
         if(tempObj[incomingArray[i]] === undefined) {
-            tempObj[incomingArray[i]] = i;
+            tempObj[incomingArray[i]] = "no recurring";
         } else {
-            tempObj[incomingArray[i]] = incomingArray[i];
+            tempObj[incomingArray[i]] = incomingArray.indexOf(incomingArray[i]);
         }
     }
-    
+
+    let lowestKey = Infinity;
+
     for (let x in tempObj) {
-        console.log(x)
+        // We can create a variable that holds the smallest. We dont assign anything
+        // if tempObj[x] < variable, assign it into the value or if it is equal to 0
+        if(typeof tempObj[x] !== "string" && tempObj[x] < lowestKey) {
+            lowestKey = tempObj[x];
+        }
     }
+
+    return lowestKey === Infinity ? undefined : incomingArray[lowestKey];
     
-    return undefined;
 }
 
-console.log(returnFirstRecurringCharacter2([2, 5, 1, 2, 3, 5, 1, 2, 4]));
+console.log(returnFirstRecurringCharacter2([5, 3, 9, 7, 4, 9, 1, 1, 1, 4]));
