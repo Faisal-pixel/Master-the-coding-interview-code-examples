@@ -1,3 +1,14 @@
+class LinkedListNode {
+    value: any; // In case you get confused again about whether this is setting a value to "value" and "next"
+    next: null | any; //I finally used my brain, in js, you only set values when you use the equal sign and then we use column when setting
+                //types
+
+    constructor(value: any) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
 class LinkedList {
     head: { value: any, next: any };
     tail: { value: any, next: any };
@@ -27,10 +38,7 @@ class LinkedList {
     // But if this.head.next !== null, then we can just take this.tail.next and set it to toAppend, then set this.tail to toAppend
     // So i realised since we are appending, nothing reallly concern us with the head, the tail is the koko
     append(incomingValue: any) {
-        const toAppend = {
-            value: incomingValue,
-            next: null
-        }
+        const toAppend = new LinkedListNode(incomingValue)
 
         this.tail.next = toAppend;
 
@@ -47,11 +55,8 @@ class LinkedList {
     // Then we can increase the length
 
     prepend(incomingValue: any) {
-        const toPrepend = {
-            value: incomingValue,
-            next: this.head
-        }
-
+        const toPrepend = new LinkedListNode(incomingValue);
+        toPrepend.next = this.head;
         this.head = toPrepend;
         this.length++;
     }
