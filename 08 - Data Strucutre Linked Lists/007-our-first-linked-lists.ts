@@ -59,9 +59,8 @@ class LinkedList {
 
 const myFirstLinkedList = new LinkedList(10);
 
-myFirstLinkedList.append(20);
-myFirstLinkedList.append(30);
 
 myFirstLinkedList.prepend(5);
+myFirstLinkedList.prepend(2);
 
 console.log(myFirstLinkedList)
