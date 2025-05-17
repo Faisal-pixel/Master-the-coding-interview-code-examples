@@ -72,13 +72,56 @@ class LinkedList {
 
         return array;
     }
+
+    // Creating insert
+    // First of let us get the number that is at the index the user wants to insert into and store in a variable (numberToShift). 
+    // We will use our printList function.
+    // Then we also want to store our currentNode to this.head and we will use it to keep track of where we are in the LinkedList
+    // then using the while loop, we can always check if currentNode !== null
+    // then we check, if currentNode.value === numberToShift, if it is...
+    // We want to first shift the numberToShift by setting currentNode.next to currentNode 
+    // (remember nodes can only store nodes or null)
+    // Then we can now set the curreNode.value = to the incomingValue
+    // Then we have to update currentNode to currentNode.next
+    // Then return printList
+    // The above solution wont work because the line currentNode.next = currentNode is creating a reference to currentNode
+    // So basically, what's happening is, even though it seems I am setting next currentNode with {value: 20, next: {value: 20, next: node}}
+    // And i now change the currentNode.value to 30, becuase javascript keeps a reference to the object, it basically now says
+    // {value: 30, next: {value: 30, next: node}}... So its always going to be referencing itself
+    // Hence, we actually need to create a node for the insert. We cant just insert a value to a linkedlist, we have to insert a node
+    // and remember a node, has both value and a next propert
+    //Soooo:
+    // we create a newNode and set the value to incomingValue, the next will be null for now. We also have our numberToShift.
+    // and we should also select the one before the numberToShift so that we can set the next value of that one to our newNode
+    // We can set the currentNode to this.head for our loop
+    // if its equalt to the beforeNumberToshift, we want to set the next value to newNode
+    // Then if its equal to numberToshift, we want to set the to Insert object's next to the currentNode
+
+    insert(index: number, incomingValue: any) {
+        const numberToShift = this.printList()[index];
+        const beforeNumberToShift = this.printList()[index-1];
+        const newNode = new LinkedListNode(incomingValue);
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            if(currentNode.value === beforeNumberToShift) {
+                currentNode.next = newNode;
+            }
+            if(currentNode.value === numberToShift) {
+                newNode.next = currentNode
+            }
+            currentNode = currentNode.next;
+        }
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
 
 
-myFirstLinkedList.prepend(5);
-myFirstLinkedList.prepend(2);
-console.log(myFirstLinkedList.printList());
+
+myFirstLinkedList.append(20)
+myFirstLinkedList.append(40)
+console.log(myFirstLinkedList.printList(), myFirstLinkedList.printList().length);
+myFirstLinkedList.insert(1, 30);
+
 
 console.log(myFirstLinkedList)
