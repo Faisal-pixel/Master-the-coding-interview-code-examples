@@ -25,7 +25,7 @@ class LinkedList {
     // What we can do is check, this.head.next === null (!this.head.next), then we just set it to toAppend object
     // and then set the this.tail to the toAppend object.
     // But if this.head.next !== null, then we can just take this.tail.next and set it to toAppend, then set this.tail to toAppend
-
+    // So i realised since we are appending, nothing reallly concern us with the head, the tail is the koko
     append(incomingValue: any) {
         const toAppend = {
             value: incomingValue,
@@ -39,17 +39,29 @@ class LinkedList {
 
         return this;
     }
+
+    // Creating the prepend method
+    // So we are receiving a value, then we can create an object toPrepend= {value: incominValue, next: this.head}
+    // Then after, we want to set this.head to toPrepent object. Cuz we always have to keep track of the head, and the first item
+    // is always the head
+    // Then we can increase the length
+
+    prepend(incomingValue: any) {
+        const toPrepend = {
+            value: incomingValue,
+            next: this.head
+        }
+
+        this.head = toPrepend;
+        this.length++;
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
 
 myFirstLinkedList.append(20);
 myFirstLinkedList.append(30);
-myFirstLinkedList.append(40);
-myFirstLinkedList.append(50);
-myFirstLinkedList.append(60);
-myFirstLinkedList.append(70);
-myFirstLinkedList.append(80);
-console.log(myFirstLinkedList.append(90));
 
-// console.log(myFirstLinkedList)
+myFirstLinkedList.prepend(5);
+
+console.log(myFirstLinkedList)
