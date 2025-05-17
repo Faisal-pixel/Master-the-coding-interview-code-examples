@@ -60,6 +60,18 @@ class LinkedList {
         this.head = toPrepend;
         this.length++;
     }
+
+    printList() {
+        const array: any[] = [];
+        let currentNode = this.head;
+
+        while(currentNode !== null) {
+            array.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+
+        return array;
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
@@ -67,5 +79,6 @@ const myFirstLinkedList = new LinkedList(10);
 
 myFirstLinkedList.prepend(5);
 myFirstLinkedList.prepend(2);
+console.log(myFirstLinkedList.printList());
 
 console.log(myFirstLinkedList)
