@@ -119,6 +119,10 @@ class LinkedList {
     }
 
     insertAsAndreiSolved(index: number, value: any) {
+        if(index >= this.length) {
+            this.append(value);
+            return "Index to large, but value has been appended to the end"
+        }
         const newNode = new LinkedListNode(value);
         const leadingNode = this.traverseToIndex(index - 1);
         const holdingNode = leadingNode.next;
@@ -137,6 +141,14 @@ class LinkedList {
         }
         return currentNode;
     }
+
+    remove(index: number) {
+        const leadingNode = this.traverseToIndex(index-1);
+        const node_to_delete = leadingNode.next;
+        const holdingNode = node_to_delete.next;
+        leadingNode.next = holdingNode;
+        this.length--;
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
@@ -146,6 +158,8 @@ const myFirstLinkedList = new LinkedList(10);
 myFirstLinkedList.append(20)
 myFirstLinkedList.append(40)
 myFirstLinkedList.insertAsAndreiSolved(1, 30);
+myFirstLinkedList.insertAsAndreiSolved(40, 30);
+myFirstLinkedList.remove(1);
 
 console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
 console.log(myFirstLinkedList)
