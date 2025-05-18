@@ -101,16 +101,21 @@ class LinkedList {
         const numberToShift = this.printList()[index];
         const beforeNumberToShift = this.printList()[index-1];
         const newNode = new LinkedListNode(incomingValue);
+        let holdingNode;
         let currentNode = this.head;
         while (currentNode !== null) {
+            console.log(currentNode.value)
             if(currentNode.value === beforeNumberToShift) {
+                holdingNode = currentNode.next;
                 currentNode.next = newNode;
-            }
-            if(currentNode.value === numberToShift) {
-                newNode.next = currentNode
+                newNode.next = holdingNode
+                this.length++
+                return;
             }
             currentNode = currentNode.next;
         }
+
+        this.length++
     }
 }
 
@@ -120,8 +125,7 @@ const myFirstLinkedList = new LinkedList(10);
 
 myFirstLinkedList.append(20)
 myFirstLinkedList.append(40)
-console.log(myFirstLinkedList.printList(), myFirstLinkedList.printList().length);
 myFirstLinkedList.insert(1, 30);
 
-
+console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
 console.log(myFirstLinkedList)
