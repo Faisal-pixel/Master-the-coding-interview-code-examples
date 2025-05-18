@@ -117,6 +117,26 @@ class LinkedList {
 
         this.length++
     }
+
+    insertAsAndreiSolved(index: number, value: any) {
+        const newNode = new LinkedListNode(value);
+        const leadingNode = this.traverseToIndex(index - 1);
+        const holdingNode = leadingNode.next;
+        leadingNode.next = newNode;
+        newNode.next = holdingNode;
+    }
+
+    traverseToIndex(index: number) {
+        let counter = 0;
+        let currentNode = this.head;
+
+        while(counter !== index) {
+            currentNode = currentNode.next;
+            counter++
+        }
+
+        return currentNode;
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
@@ -125,7 +145,7 @@ const myFirstLinkedList = new LinkedList(10);
 
 myFirstLinkedList.append(20)
 myFirstLinkedList.append(40)
-myFirstLinkedList.insert(1, 30);
+myFirstLinkedList.insertAsAndreiSolved(1, 30);
 
 console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
 console.log(myFirstLinkedList)
