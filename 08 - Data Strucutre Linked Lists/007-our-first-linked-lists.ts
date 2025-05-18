@@ -124,6 +124,7 @@ class LinkedList {
         const holdingNode = leadingNode.next;
         leadingNode.next = newNode;
         newNode.next = holdingNode;
+        this.length++;
     }
 
     traverseToIndex(index: number) {
@@ -134,7 +135,6 @@ class LinkedList {
             currentNode = currentNode.next;
             counter++
         }
-
         return currentNode;
     }
 }
