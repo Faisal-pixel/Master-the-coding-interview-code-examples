@@ -12,7 +12,7 @@ class DoublyLinkedListNode {
 
 class DoublyLinkedList {
     head: {value: any, next: any | null, prev: null};
-    tail: {value: any, next: null, prev: any | null};
+    tail: {value: any, next: null | any, prev: any | null};
     length: number;
 
     constructor(value: any) {
@@ -33,9 +33,8 @@ class DoublyLinkedList {
     //Then we set this.tail to the new node.
     append(value: any) {
         const newDoublyLinkedListNode = new DoublyLinkedListNode(value);
-        this.head.next = newDoublyLinkedListNode;
-        newDoublyLinkedListNode.next = null;
         newDoublyLinkedListNode.prev = this.tail;
+        this.tail.next = newDoublyLinkedListNode;
         this.tail = newDoublyLinkedListNode;
         this.length++;
     }
@@ -43,4 +42,6 @@ class DoublyLinkedList {
 
 const myDoublyLinkedList = new DoublyLinkedList(10);
 myDoublyLinkedList.append(20)
+myDoublyLinkedList.append(30)
+myDoublyLinkedList.append(40)
 console.log(myDoublyLinkedList);

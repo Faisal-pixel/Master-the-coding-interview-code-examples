@@ -98,7 +98,6 @@ class LinkedList {
     // Then if its equal to numberToshift, we want to set the to Insert object's next to the currentNode
 
     insert(index: number, incomingValue: any) {
-        const numberToShift = this.printList()[index];
         const beforeNumberToShift = this.printList()[index-1];
         const newNode = new LinkedListNode(incomingValue);
         let holdingNode;
