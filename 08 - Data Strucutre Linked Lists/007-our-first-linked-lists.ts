@@ -148,6 +148,29 @@ class LinkedList {
         leadingNode.next = holdingNode;
         this.length--;
     }
+
+    reverse() {
+        const array = this.printList();
+        let startingIndex = array.length - 1;
+        let currentNode;
+        while(startingIndex >= 0) {
+            const newNode = new LinkedListNode(array[startingIndex]);
+            console.log(newNode)
+            
+            if(startingIndex === this.length-1) {
+                this.head = newNode;
+                currentNode = this.head;
+            } else if(startingIndex === 0) {
+                currentNode.next = newNode;
+                this.tail = newNode;
+                newNode.next = null;
+            } else {
+                currentNode.next = newNode;
+            }
+            if(currentNode.next !==  null) currentNode = currentNode.next;
+            startingIndex--;
+        }
+    }
 }
 
 const myFirstLinkedList = new LinkedList(10);
@@ -158,7 +181,8 @@ myFirstLinkedList.append(20)
 myFirstLinkedList.append(40)
 myFirstLinkedList.insertAsAndreiSolved(1, 30);
 myFirstLinkedList.insertAsAndreiSolved(40, 30);
-myFirstLinkedList.remove(1);
-
+// myFirstLinkedList.remove(1);
+console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
+myFirstLinkedList.reverse()
 console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
 console.log(myFirstLinkedList)
