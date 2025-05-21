@@ -90,6 +90,10 @@ class DoublyLinkedList {
     // Then we want to set holdingNode.prev to newNode
 
     insert(index: number, value: any) {
+        if(index >= this.length) {
+            this.append(value);
+            return
+        }
         const newDoublyLinkedListNode = new DoublyLinkedListNode(value);
         const nodeBeforeIndex = this.traverseUntilIndex(index - 1);
         const holdingNode = nodeBeforeIndex.next;
@@ -99,17 +103,28 @@ class DoublyLinkedList {
         holdingNode.prev = newDoublyLinkedListNode;
         this.length++;
     }
+    // So to remove, we first traverse to the node at the index.
+    // Then we hold the node in nodeToRemove.next;
+    // Then we also hold nodeToRemove.prev.
+    // Then we set prevNode.next to nextNode.
+    // Then we set nextNode.prev to prevNode
+    remove(index: number) {
+        const nodeToRemove = this.traverseUntilIndex(index);
+        const nextNode = nodeToRemove.next;
+        const prevNode = nodeToRemove.prev;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
+        this.length--;
+    }
 }
 
 const myDoublyLinkedList = new DoublyLinkedList(10);
 myDoublyLinkedList.append(20);
-myDoublyLinkedList.append(30);
-myDoublyLinkedList.append(40);
-myDoublyLinkedList.prepend(50);
-myDoublyLinkedList.prepend(60);
 myDoublyLinkedList.insert(2, 40);
+
 myDoublyLinkedList.insert(3, 30);
 myDoublyLinkedList.insert(4, 20);
 console.log(myDoublyLinkedList.printList());
-console.log(myDoublyLinkedList.traverseUntilIndex(2));
+myDoublyLinkedList.remove(2);
+console.log(myDoublyLinkedList.printList());
 console.log(myDoublyLinkedList);
