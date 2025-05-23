@@ -150,12 +150,15 @@ class LinkedList {
     }
 
     reverse() {
+        if(!this.head.next) {
+            // If the head is the only value
+            return this.head;
+        }
         const array = this.printList();
         let startingIndex = array.length - 1;
         let currentNode;
         while(startingIndex >= 0) {
             const newNode = new LinkedListNode(array[startingIndex]);
-            console.log(newNode)
             
             if(startingIndex === this.length-1) {
                 this.head = newNode;
@@ -171,6 +174,30 @@ class LinkedList {
             startingIndex--;
         }
     }
+
+    reverseByAndrei() {
+        if(!this.head.next) {
+            // If the head is the only value
+            return this.head;
+        }
+
+        let first = this.head; // So we set the first variable to the head
+        this.tail = this.head; // Then from the get go, we know our head will become the tail so we set it before the loop because
+        // we will be changing the head
+        let second = first.next; // Then our second variable will be the next value of the first variable
+
+        while(second) {
+            const temp = second.next;
+            second.next = first;
+            first = second;
+            second = temp;
+        }
+
+        this.head.next = null; // We set the head's next to null, because we know the head will be the last value
+        this.head = first; // Then we set the head to the first variable
+    }
+
+    
 }
 
 const myFirstLinkedList = new LinkedList(10);
@@ -183,6 +210,7 @@ myFirstLinkedList.insertAsAndreiSolved(1, 30);
 myFirstLinkedList.insertAsAndreiSolved(40, 30);
 // myFirstLinkedList.remove(1);
 console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
-myFirstLinkedList.reverse()
+myFirstLinkedList.reverseByAndrei()
 console.log("Print the whole list: ", myFirstLinkedList.printList(), "Print the length of the whole list: ", myFirstLinkedList.printList().length);
 console.log(myFirstLinkedList)
+
