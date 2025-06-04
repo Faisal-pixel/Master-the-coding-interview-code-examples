@@ -16,7 +16,7 @@ class Queue<T> {
     constructor() {
         this.length = 0;
         this.first = null;
-        this.last = null;
+        this.last = this.first;
     }
 
     isEmpty() {
@@ -26,19 +26,18 @@ class Queue<T> {
     peek() {
         if(this.isEmpty()) return "Nothing to peek! The Queue is empty";
 
-        return this.last?.value;
+        return this.first;
     }
 
     enqueue(value: T) {
         const newNode = new QueueNode(value);
         if(this.isEmpty()) {
             this.first = newNode;
-            this.last = newNode;
+            this.last = newNode
             this.length++
         } else {
-            const holdingNode = this.first;
-            this.first = newNode;
-            this.first.next = holdingNode;
+            this.last && (this.last.next = newNode);
+            this.last = newNode;
             this.length++
         }
         return this;
@@ -63,7 +62,9 @@ myQueue.enqueue("Favour");
 myQueue.enqueue("Faisal");
 
 console.log("First", myQueue)
-// console.log(myQueue.dequeue());
-console.log(myQueue.peek())
+console.log("The dequeueing", myQueue.dequeue());
+console.log("The dequeueing", myQueue.dequeue());
+console.log("The dequeueing", myQueue.dequeue());
+console.log("Peeking", myQueue.peek())
 
 console.log("Last", myQueue);

@@ -36,10 +36,12 @@ class Stack<T = number> {
         if(this.isEmpty()) {
             this.top = newNode;
             this.bottom = newNode;
+            this.length++;
         } else {
             const holdingNode = this.top;
             this.top = newNode;
             this.top.next = holdingNode;
+            this.length++;
         }
     }
 
@@ -67,12 +69,16 @@ class Stack<T = number> {
         if(this.isEmpty()) return "Nothing to pop, stack is empty!";
         const poppedNode = this.top;
 
-        this.top = this.top?.next || null;
+        this.top = this.top?.next || null; // So at some point yeah, this.top will be null because everytime we pop, we set
+        // this.top to the next (this.top.next), so because it can be null we add the ? and then because this.top cant take undefined
+        //So if this.top?.next is actually null, it will give undefined because if top is null, then there cant be a next hence the
+        // undefined. So if it is undefined, it will give false then null will be asssigned to this.top
 
         if(!this.top) { // If the top is actually null, then we need to set the bottom to null meaning the stack is empty.
             this.bottom = null
         }
-        this.length--
+        this.length--;
+        console.log("Popped node", poppedNode)
         return poppedNode;
     }
 
@@ -84,6 +90,7 @@ class Stack<T = number> {
 const myStack = new Stack();
 myStack.push(5);
 myStack.push(10);
+myStack.pop();
 
 
 console.log(myStack);
