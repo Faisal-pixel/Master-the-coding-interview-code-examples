@@ -103,7 +103,6 @@ class LinkedList {
         let holdingNode;
         let currentNode = this.head;
         while (currentNode !== null) {
-            console.log(currentNode.value)
             if(currentNode.value === beforeNumberToShift) {
                 holdingNode = currentNode.next;
                 currentNode.next = newNode;
@@ -120,7 +119,7 @@ class LinkedList {
     insertAsAndreiSolved(index: number, value: any) {
         if(index >= this.length) {
             this.append(value);
-            return "Index to large, but value has been appended to the end"
+            return "Index too large, but value has been appended to the end"
         }
         const newNode = new LinkedListNode(value);
         const leadingNode = this.traverseToIndex(index - 1);
