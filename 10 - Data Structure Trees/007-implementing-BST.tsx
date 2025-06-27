@@ -126,7 +126,6 @@ class BinarySearchTree {
     if (!this.root.left && !this.root.right) {
       this.root = null;
     }
-    let newNode = new TreeNode(value);
     let currentNode: TreeNode | null = this.root;
     let parentNode: TreeNode | null = null;
     while (currentNode) {
@@ -152,7 +151,7 @@ class BinarySearchTree {
             // Removing root node with only left child
             this.root = currentNode.left;
           }
-        } else if (!currentNode.left && currentNode.right) {
+        } else if (currentNode.right?.left === null) {
           //OPTION 3: If there is a right child but the right child doesnt have a left child
           if (parentNode) {
             if (parentNode.left === currentNode) {
