@@ -3,18 +3,23 @@ function fibonacciIterative(n: number) {
     if(n <= 2)  return 1;
     let a = 1;
     let b = 1;
-    let answer;
+    let answer: number;
 
     for(let i = 3; i <= n; i++) {
-        console.log(i)
         answer = a + b;
         a = b;
-        b = answer
-        console.log("a:", a);
-        console.log("b:", b);
+        b = answer;
     }
 
     return b
 }
 
-console.log(fibonacciIterative(7));
+
+
+function fibonacciRecursive(n: number) {
+    if(n === 0) return 0;
+    if(n <= 2)  return 1;
+    return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
+}
+
+console.log(fibonacciRecursive(7));
