@@ -59,3 +59,32 @@ function containsCommonItem3(arr1, arr2) {
     // Loop through arr1 and if some of them in arr1 are included in arr2, return true.
     return arr1.some(item => arr2.includes(item))
 }
+
+/**
+ * [1,2,3,4,5] [2,4,6,5,7]
+ * 
+ * we could first loop through the first one
+ * then for every element in the first array, we compare to the second one
+ * So when it is 1 in the first array, we have another nested loop that loops through the second array and check if 1 is equal
+ * to any of the memeber;
+ * 
+ * But this is bad because we get O(n^2);
+ * 
+ * We could use HASHMAPS instead:
+ * 
+ * We could convert the first array into an object; with the elements being the key and the values set to true
+ * 
+ * Then we can loop through the second loops and just check the object if it exist there, if it does, it will return the value whic
+ * is true!
+ */
+const checkForCommonItemsRevision1 = (array1, array2) => {
+    const mappedObject = Object.fromEntries(
+        array1.map(el => [el, true])
+    )
+
+    console.log(mappedObject);
+    let i = 0;
+    while(i < array2.length) {
+        return mappedObject[array2[i]] ? mappedObject[array2[i]] : false
+    }
+}

@@ -8,7 +8,7 @@ function printALlNumbersThenAllPairSums(numbers) {
     console.log('and these are their sums:');
     numbers.forEach(function(firstNumber) {
         numbers.forEach(function(secondNumber) {
-            console.log(firstNumber + secondNumber);
+            console.log(`${firstNumber}: `, firstNumber + secondNumber);
         });
     });
 }
