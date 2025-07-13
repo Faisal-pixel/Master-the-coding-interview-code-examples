@@ -47,7 +47,7 @@ function containsCommonItem2(arr1, arr2) {
     return false;
 }
 
-console.log(containsCommonItem2(array1, array2))
+// console.log(containsCommonItem2(array1, array2))
 
 // If the input can become very very large, then the second solution might be the perfect one to increase speed complexity.
 
@@ -85,6 +85,11 @@ const checkForCommonItemsRevision1 = (array1, array2) => {
     console.log(mappedObject);
     let i = 0;
     while(i < array2.length) {
-        return mappedObject[array2[i]] ? mappedObject[array2[i]] : false
+        if (mappedObject[array2[i]]) return mappedObject[array2[i]];
+        i++;
     }
+
+    return false;
 }
+
+console.log(checkForCommonItemsRevision1(['a', 'b', 'c', 'x'], ['z', 'y', 'x']))

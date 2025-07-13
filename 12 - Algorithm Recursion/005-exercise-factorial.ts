@@ -1,7 +1,7 @@
 let answer: number = 1;
 
 function findFactorialRecursive(number: number): number {
-    if(number < 1) {
+    if(number <= 1) {
         return answer
     }
     answer *= number;
