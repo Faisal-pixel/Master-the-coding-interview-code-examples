@@ -60,3 +60,30 @@ function recursiveFunctionRevision (n: number) {
     return recursiveFunctionRevision(n-1) + recursiveFunctionRevision(n-2);
 }
 
+
+/**
+ * @param n
+ * 
+ * What is the function? What is the action... The action is getting the value in a fibonaccie series at an index.
+ * We know our fibaonacci is Fn = Fn-1 + Fn-2
+ * That is F at nth position, is F at n -1 plus F at n-2
+ * It basically adds them together!. Now because we do not know these values. The only thin we know is, we can always start
+ * from 0 and 1. That's the first 2 members! Every single time. So that means we can go down to 0 and 1,add them both and go
+ * back up.
+ * fibonacci(n) {
+ * will always do
+ * 
+ * but we want it to stop at if n equals to 1, return 1, and if n equals to 0 return 0 (this is our base case)
+ * 
+ * fibonacci(n - 1) + fibonacci(n-2)
+ * }
+ */
+
+function fibonacciRecursiveRevision2(n: number) {
+    if(n === 1 || n === 2) return 1
+    if (n === 0) return 0
+
+    return fibonacciRecursiveRevision2(n - 1) + fibonacciRecursiveRevision2(n - 2);
+}
+
+console.log(fibonacciRecursiveRevision2(2))
