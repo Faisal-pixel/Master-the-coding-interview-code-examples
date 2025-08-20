@@ -53,7 +53,7 @@ function bubbleSortRevision(array: number[]) {
     }
 
     if(!swap) return "Nothing to swap"
-  }
+  }   
 }
 
 const returnedValue = bubbleSortRevision([
