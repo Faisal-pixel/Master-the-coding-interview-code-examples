@@ -41,8 +41,9 @@ function removeElementV1(nums: number[], val: number) {
         }
     });
 
-    return k;
+    
+    return nums;
 }
 
 
-console.log(removeElementV1([0,1,2,2,3,0,4,2], 2));
+console.log(removeElementV1([1, 2, 3, 4, 3], 3));
