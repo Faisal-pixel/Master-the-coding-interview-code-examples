@@ -1,6 +1,6 @@
 function mergeSortedArray(array1, array2) {
     //The goal is to find a way to combine the above
-    // So let's thin... we could create an array variable that stores the final array
+    // So let's think... we could create an array variable that stores the final array
     // Then after that, we loop through the first array and push into the final array
     // Then after that, we loop through the second array and push into the final array
     // Then we return

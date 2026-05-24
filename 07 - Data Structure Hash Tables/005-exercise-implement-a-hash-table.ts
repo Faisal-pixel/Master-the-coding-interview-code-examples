@@ -4,13 +4,19 @@ interface IHashTable {
 }
 
 class HashTable implements IHashTable {
-  data: Array<any>; // Declare the data property
+  // CLASS FIELD DECLARATION
+  // In TypeScript, you must declare a property at the class level before you can use this.data anywhere.
+  // The interface above is just a contract (a promise), but this line is what tells TypeScript the field physically exists.
+  // We are NOT assigning a value here because the size comes from whoever creates the HashTable (via the constructor).
+  // If you already knew the value upfront, you could write: data: Array<any> = []
+  // You can also assign it inside a regular method (not just the constructor) and this declaration still works fine.
+  data: Array<any>;
 
   constructor(size: number) {
     // we receive a size value, which is a number.
-    this.data = new Array(size); // Then we are instantiation the Array class and setting the size,a nd then storing in this.data
+    this.data = new Array(size); // Then we are instantiating the Array class and setting the size,a nd then storing in this.data
   }
-  _hash(key) {
+  _hash(key: string) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
       hash = (hash + key.charCodeAt(i) * i) % this.data.length;
@@ -75,6 +81,37 @@ class HashTable implements IHashTable {
       }
     }
     return keyArray;
+  }
+}
+
+class HashTableRevision implements IHashTable {
+  data: Array<any>;
+
+  constructor(size: number) {
+    this.data = new Array(size)
+  }
+
+
+  _hash(key: string): number {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * i) % this.data.length
+    }
+
+    return hash
+  }
+
+  set(key: string, value: string | number | boolean | (() => {})) {
+    const keyValueStore = []
+    const index = this._hash(key)
+    keyValueStore.push(key)
+    keyValueStore.push(value)
+
+    if(!this.data[index]) {
+      this.data[index] = []
+    }
+
+    this.data[index].push(keyValueStore)
   }
 }
 
